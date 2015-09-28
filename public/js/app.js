@@ -1,6 +1,6 @@
 angular.module("Chatr",[])
 .factory("socketFactory",function(){
-	var socket = io.connect("http://localhost:3000");
+	var socket = io.connect("https://chatr-chatr.herokuapp.com/");
 	return socket;
 })
 .directive('schrollBottom', function () {
