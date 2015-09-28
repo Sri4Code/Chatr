@@ -1,0 +1,174 @@
+<html ng-app="Chatr">
+
+<head>
+	<title>Chatr</title>
+	<script src="/libs/angular/angular.min.js"></script>
+</head>
+
+<body ng-controller="ChatController">
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Chatr Chatr <i class="fa fa-comments" style="color:#337ab7; font-size:25px"></i></a>
+			</div>
+		</div>
+	</nav>
+
+	<div ng-cloak class="container">
+		<form ng-submit="createUser()">
+			<div ng-hide="chat.users.length>0" class="container enter-user input-group">
+				<input autofocus="autofocus" ng-model="chat.currentUser" type="text" class="form-control" placeholder="Username">
+				<span class="input-group-btn">
+				<button ng-click="createUser()" class="btn btn-default" type="button">Get in</button>
+			</span>
+			</div>
+		</form>
+		<div ng-show="chat.users.length>0" class="row ">
+			<div class="col-xs-8 col-sm-8 col-md-8">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						RECENT CHAT HISTORY
+					</div>
+					<div class="panel-body chat-messages" schroll-bottom="chat.messages">
+						<ul class="media-list">
+
+							<li ng-repeat="msg in chat.messages  track by $index" class="media">
+
+								<div class="media-body">
+
+									<div class="media">
+										<a class="pull-left" href="#">
+											<!--<img class="media-object img-circle " src="assets/img/user.png" />-->
+											<i class="glyphicon glyphicon-user"></i>
+
+										</a>
+										<div class="media-body wrap-text">
+											{{msg}}
+											<!--<small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>-->
+											<hr />
+										</div>
+									</div>
+
+								</div>
+							</li>
+
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<form ng-submit="sendMessage()">
+							<div class="input-group">
+								<input autofocus="autofocus" ng-model="chat.message" type="text" class="form-control" placeholder="type your mind">
+								<span class="input-group-btn">
+								<button ng-click="sendMessage()" class="btn btn-default" type="button">Send</button>
+							</span>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						ONLINE USERS ({{chat.users.length}})
+					</div>
+					<div class="panel-body">
+						<ul class="media-list list-group  users-list">
+
+							<li ng-repeat="user in chat.users" class="media">
+
+								<div class="media-body">
+
+									<div class="media">
+										<div class="media-body">
+											<a ng-click="addPrivateUser(user)" href="#" class="list-group-item">
+												<i class="glyphicon glyphicon-user"></i> {{user.name}}
+											</a>
+
+											<!--<small class="text-muted">Active From 3 hours</small>-->
+										</div>
+									</div>
+
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="private-chats">
+			<div ng-repeat="user in chat.users | filter:{private:true}">
+				<div class="col-md-4">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							{{user.name}}
+							<span class="pull-right glyphicon glyphicon-remove" ng-click="removePrivateUser(user)"></span>
+						</div>
+						<div class="panel-body private-chat-messages"  schroll-bottom="user.messages">
+							<ul class="media-list">
+
+								<li ng-repeat="msg in user.messages track by $index" class="media">
+
+									<div class="media-body">
+
+										<div class="media">
+											<a class="pull-left" href="#">
+												<!--<img class="media-object img-circle " src="assets/img/user.png" />-->
+												<i class="glyphicon glyphicon-user"></i>
+
+											</a>
+											<div class="media-body wrap-text">
+												{{msg}}
+												<!--<small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>-->
+												<hr />
+											</div>
+										</div>
+
+									</div>
+								</li>
+
+							</ul>
+						</div>
+						<div class="panel-footer">
+							<form ng-submit="sendPrivateMessage(user)">
+								<div class="input-group">
+									<input ng-model="user.privateMessage" type="text" class="form-control">
+									<span class="input-group-btn">
+							<button ng-click="sendPrivateMessage(user)" class="btn btn-default" type="button">Go</button>
+						</span>
+
+								</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+</body>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+<script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/site.css">
+<script src="/js/app.js"></script>
+<script src="/js/controllers/ChatController.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+
+</html>

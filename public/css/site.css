@@ -1,0 +1,58 @@
+.chat-panel {
+	width: 200px;
+}
+
+.chat-box
+{
+    border: 1px solid grey; padding:5px; 
+}
+.chat-messages{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.private-chat-messages{
+    height:150px;
+    overflow-y: scroll;
+}
+.users-list
+{
+    height: 200px;
+    overflow-y: scroll;
+}
+.enter-user
+{
+	
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    float:none;
+
+}
+
+hr{
+    margin-top:5px;
+    margin-bottom: 0px;
+}
+
+.wrap-text{
+    word-wrap: break-word;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
