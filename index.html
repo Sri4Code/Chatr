@@ -136,7 +136,7 @@
 						<div class="panel-footer">
 							<form ng-submit="sendPrivateMessage(user)">
 								<div class="input-group">
-									<input focus-on focus="!user.private || !user.ping"  ng-model="user.privateMessage" type="text" class="form-control">
+									<input focus-on focus="!user.private || !user.ping" ng-click="removePing(user)" ng-model="user.privateMessage" type="text" class="form-control">
 									<span class="input-group-btn">
 									<button ng-click="sendPrivateMessage(user)" class="btn btn-default" type="button">Go</button>
 								</span>
