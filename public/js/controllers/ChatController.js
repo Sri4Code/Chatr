@@ -16,14 +16,19 @@ function ChatController($scope, socketFactory) {
 	$scope.removePrivateUser = removePrivateUser;
 	$scope.sendMessage = sendMessage;
 	$scope.sendPrivateMessage = sendPrivateMessage;
-
+	$scope.removePing = removePing;
 
 	function addPrivateUser(user) {
 		$scope.chat.users[user.id].private = true;
+		$scope.chat.users[user.id].ping = false;
 	}
 	
 	function removePrivateUser(user) {
 		$scope.chat.users[user.id].private = false;
+	}
+
+	function removePing(user) {
+		$scope.chat.users[user.id].ping = false;
 	}
 
 	function sendMessage() {
@@ -66,6 +71,7 @@ function ChatController($scope, socketFactory) {
 		$scope.$apply(function () {
 			var user = findUser(data.user)
 			$scope.chat.users[user.id].private = true;
+			$scope.chat.users[user.id].ping = true;
 			$scope.chat.users[user.id].messages.push(data.user + ": " + data.message);
 		});
 	});

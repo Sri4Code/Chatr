@@ -1,3 +1,9 @@
+.chat-icon
+{
+    color:#337ab7;
+    font-size:25px;
+}
+
 .chat-panel {
 	width: 200px;
 }
@@ -53,6 +59,17 @@ hr{
     word-wrap: break-word;
 }
 
+.alert
+{
+    border-color: orangered;
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
